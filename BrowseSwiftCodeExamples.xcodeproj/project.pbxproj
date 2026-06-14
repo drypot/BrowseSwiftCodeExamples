@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		006E08942FDED58000756614 /* BrowseSwiftCodeExamples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrowseSwiftCodeExamples.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		006E08942FDED58000756614 /* Browse Swift Code Examples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Browse Swift Code Examples.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		006E08A22FDED59E00756614 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		006E08A32FDED59E00756614 /* PRIVACY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PRIVACY.md; sourceTree = "<group>"; };
+		006E08A42FDED59E00756614 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -32,6 +35,9 @@
 		006E088B2FDED58000756614 = {
 			isa = PBXGroup;
 			children = (
+				006E08A22FDED59E00756614 /* LICENSE */,
+				006E08A32FDED59E00756614 /* PRIVACY.md */,
+				006E08A42FDED59E00756614 /* README.md */,
 				006E08962FDED58000756614 /* BrowseSwiftCodeExamples */,
 				006E08952FDED58000756614 /* Products */,
 			);
@@ -40,7 +46,7 @@
 		006E08952FDED58000756614 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				006E08942FDED58000756614 /* BrowseSwiftCodeExamples.app */,
+				006E08942FDED58000756614 /* Browse Swift Code Examples.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +54,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		006E08932FDED58000756614 /* BrowseSwiftCodeExamples */ = {
+		006E08932FDED58000756614 /* Browse Swift Code Examples */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 006E089F2FDED58100756614 /* Build configuration list for PBXNativeTarget "BrowseSwiftCodeExamples" */;
+			buildConfigurationList = 006E089F2FDED58100756614 /* Build configuration list for PBXNativeTarget "Browse Swift Code Examples" */;
 			buildPhases = (
 				006E08902FDED58000756614 /* Sources */,
 				006E08912FDED58000756614 /* Frameworks */,
@@ -63,11 +69,11 @@
 			fileSystemSynchronizedGroups = (
 				006E08962FDED58000756614 /* BrowseSwiftCodeExamples */,
 			);
-			name = BrowseSwiftCodeExamples;
+			name = "Browse Swift Code Examples";
 			packageProductDependencies = (
 			);
 			productName = BrowseSwiftCodeExamples;
-			productReference = 006E08942FDED58000756614 /* BrowseSwiftCodeExamples.app */;
+			productReference = 006E08942FDED58000756614 /* Browse Swift Code Examples.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -99,7 +105,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				006E08932FDED58000756614 /* BrowseSwiftCodeExamples */,
+				006E08932FDED58000756614 /* Browse Swift Code Examples */,
 			);
 		};
 /* End PBXProject section */
@@ -321,7 +327,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		006E089F2FDED58100756614 /* Build configuration list for PBXNativeTarget "BrowseSwiftCodeExamples" */ = {
+		006E089F2FDED58100756614 /* Build configuration list for PBXNativeTarget "Browse Swift Code Examples" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				006E08A02FDED58100756614 /* Debug */,
