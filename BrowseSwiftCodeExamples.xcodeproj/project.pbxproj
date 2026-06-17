@@ -13,7 +13,35 @@
 		006E08A42FDED59E00756614 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		003EEFA02FE173D600C5E1F9 /* Exceptions for "SwiftUI" folder in "Browse Swift Code Examples" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				HelloSwiftUI.swift,
+			);
+			target = 006E08932FDED58000756614 /* Browse Swift Code Examples */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		003EEF952FE1721B00C5E1F9 /* Swift */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Swift;
+			sourceTree = "<group>";
+		};
+		003EEF972FE1723A00C5E1F9 /* SwiftUI */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				003EEFA02FE173D600C5E1F9 /* Exceptions for "SwiftUI" folder in "Browse Swift Code Examples" target */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		003EEF992FE1724400C5E1F9 /* Combine */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Combine;
+			sourceTree = "<group>";
+		};
 		006E08962FDED58000756614 /* BrowseSwiftCodeExamples */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = BrowseSwiftCodeExamples;
@@ -39,6 +67,9 @@
 				006E08A32FDED59E00756614 /* PRIVACY.md */,
 				006E08A42FDED59E00756614 /* README.md */,
 				006E08962FDED58000756614 /* BrowseSwiftCodeExamples */,
+				003EEF952FE1721B00C5E1F9 /* Swift */,
+				003EEF972FE1723A00C5E1F9 /* SwiftUI */,
+				003EEF992FE1724400C5E1F9 /* Combine */,
 				006E08952FDED58000756614 /* Products */,
 			);
 			sourceTree = "<group>";

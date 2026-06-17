@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct BrowseSwiftCodeExamplesApp: App {
+
+    @State private var appState = AppState()
+
     var body: some Scene {
-        WindowGroup {
-            ExampleListView()
-        }
+        ExampleListWindow()
+            .environment(appState)
+
+        ExampleWindow()
+            .environment(appState)
     }
 }

@@ -8,30 +8,17 @@
 import SwiftUI
 
 struct ExampleListView: View {
-    let names = [
-        "Swift Programming Language",
-        "SwiftUI Custom View",
-        "UIKit View Programming",
-        "Advanced Swift Concurrency",
-        "Swift Data Persistence"
-    ]
-
-    var body: some View {
-        SearchableListView(items: names)
-    }
-}
-
-struct SearchableListView: View {
-    let items: [String]
+    @Environment(AppState.self) private var appState
+    @Environment(\.openWindow) private var openWindow
 
     @State private var searchText = ""
 
-    private var filteredItems: [String] {
+    private var filteredItems: [Example] {
         let words = searchText.split(separator: " ").map { String($0).lowercased() }
-        guard !words.isEmpty else { return items }
+        guard !words.isEmpty else { return appState.examples }
 
-        return items.filter { item in
-            let lowercased = item.lowercased()
+        return appState.examples.filter { example in
+            let lowercased = example.title.lowercased()
             return words.allSatisfy { word in
                 lowercased.contains(word)
             }
@@ -52,8 +39,15 @@ struct SearchableListView: View {
             }
             .padding()
 
-            List(filteredItems, id: \.self) { item in
-                Text(item)
+            @Bindable var appState = appState
+            List(filteredItems, selection: $appState.selectedExampleID) { example in
+                Text(example.title)
+            }
+            .onChange(of: appState.selectedExampleID) {
+                appState.syncSelectExample()
+                if !appState.isShowExampleWindow {
+                    openWindow(id: "example")
+                }
             }
         }
     }
