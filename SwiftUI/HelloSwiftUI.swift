@@ -12,10 +12,13 @@ struct HelloSwiftUI: View {
     @Environment(Example.self) private var example
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+        VStack(alignment: .leading) {
+            ExampleHeader(example: example)
 
-#Preview {
-    HelloSwiftUI()
+            VStack {
+                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+    }
 }

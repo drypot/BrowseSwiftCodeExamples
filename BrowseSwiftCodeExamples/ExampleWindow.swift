@@ -17,11 +17,11 @@ struct ExampleWindow: Scene {
     var body: some Scene {
         Window("Example", id: "example") {
             Group {
-                if let example = appState.selectedExample {
+                if let example = appState.currentExample {
                     example.view
                         .environment(example)
                 } else {
-                    Spacer()
+                    Text("...")
                 }
             }
             .onAppear {

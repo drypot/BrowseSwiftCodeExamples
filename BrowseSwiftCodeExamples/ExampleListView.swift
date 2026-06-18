@@ -11,6 +11,8 @@ struct ExampleListView: View {
     @Environment(AppState.self) private var appState
     @Environment(\.openWindow) private var openWindow
 
+    @AppStorage("selectedExampleID") var selectedExampleID: Example.ID?
+
     @State private var searchText = ""
 
     private var filteredItems: [Example] {
@@ -39,16 +41,22 @@ struct ExampleListView: View {
             }
             .padding()
 
-            @Bindable var appState = appState
-            List(filteredItems, selection: $appState.selectedExampleID) { example in
+            List(filteredItems, selection: $selectedExampleID) { example in
                 Text(example.title)
             }
-            .onChange(of: appState.selectedExampleID) {
-                appState.syncSelectExample()
-                if !appState.isShowExampleWindow {
-                    openWindow(id: "example")
-                }
+            .onChange(of: selectedExampleID) {
+                updateExample()
             }
+            .task {
+                updateExample()
+            }
+        }
+    }
+
+    func updateExample() {
+        appState.updateCurrentExample(withID: selectedExampleID)
+        if !appState.isShowExampleWindow {
+            openWindow(id: "example")
         }
     }
 }

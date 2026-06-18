@@ -16,11 +16,14 @@ enum ExampleCategory: Int {
 
 @Observable
 final class Example: Identifiable {
-    let id = UUID()
     let title: String
     let relativePath: String
     let category: ExampleCategory
     let view: AnyView
+
+    var id: String {
+        title
+    }
 
     init(title: String, relativePath: String, category: ExampleCategory, view: AnyView) {
         self.title = title
@@ -36,16 +39,15 @@ class AppState {
         Example(title: "Hello SwiftUI", relativePath: "SwiftUI/HelloSwiftUI.swift", category: .swiftUI, view: AnyView(HelloSwiftUI()))
     ]
 
-    var selectedExampleID: Example.ID?
-    var selectedExample: Example?
+    var currentExample: Example?
 
     var isShowExampleWindow = false
 
-    func syncSelectExample() {
-        guard let id = selectedExampleID else {
-            selectedExample = nil
+    func updateCurrentExample(withID id: Example.ID?) {
+        guard let id else {
+            currentExample = nil
             return
         }
-        selectedExample = examples.first { $0.id ==  id }
+        currentExample = examples.first { $0.id ==  id }
     }
 }
