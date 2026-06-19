@@ -15,38 +15,34 @@ enum ExampleCategory: Int {
 }
 
 @Observable
-final class ExampleMeta: Identifiable {
+final class Example: Identifiable {
     let title: String
     let relativePath: String
     let category: ExampleCategory
-    let view: AnyView
+    let makeView: () -> AnyView
 
     var id: String {
         title
     }
 
-    init(title: String, relativePath: String, category: ExampleCategory, view: AnyView) {
+    init(title: String, relativePath: String, category: ExampleCategory, makeView: @escaping () -> AnyView) {
         self.title = title
         self.relativePath = relativePath
         self.category = category
-        self.view = view
+        self.makeView = makeView
     }
 }
 
 @Observable
 class AppState {
-    let examples: [ExampleMeta] = [
-        ExampleMeta(title: "Hello SwiftUI",
-                relativePath: "SwiftUI/HelloSwiftUI.swift",
-                category: .swiftUI,
-                view: AnyView(HelloSwiftUI()))
+    let examples: [Example] = [
+        Example(title: "Hello SwiftUI", relativePath: "SwiftUI/HelloSwiftUI.swift", category: .swiftUI, makeView: { AnyView(HelloSwiftUI()) })
     ]
 
-    var currentExample: ExampleMeta?
-
+    var currentExample: Example?
     var isExampleWindowOpened = false
 
-    func updateCurrentExample(withID id: ExampleMeta.ID?) {
+    func updateCurrentExample(withID id: Example.ID?) {
         guard let id else {
             currentExample = nil
             return

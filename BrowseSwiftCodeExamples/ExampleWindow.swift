@@ -25,7 +25,7 @@ struct ExampleView: View {
     var body: some View {
         Group {
             if let example = appState.currentExample {
-                example.view
+                example.makeView()
                     .environment(example)
             } else {
                 Text("...")
@@ -41,13 +41,13 @@ struct ExampleView: View {
 }
 
 struct ExampleHeader: View {
-    let meta: ExampleMeta
+    let example: Example
 
     var body: some View {
         VStack(alignment: .leading) {
-            let urlString = "https://github.com/drypot/BrowseSwiftCodeExamples/blob/main/" + meta.relativePath
+            let urlString = "https://github.com/drypot/BrowseSwiftCodeExamples/blob/main/" + example.relativePath
             let url = URL(string: urlString)!
-            Text(meta.title).font(.title)
+            Text(example.title).font(.title)
             Link(destination: url) {
                 Text(urlString)
             }

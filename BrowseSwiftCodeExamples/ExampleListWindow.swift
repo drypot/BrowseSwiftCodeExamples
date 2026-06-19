@@ -19,7 +19,7 @@ struct ExampleListView: View {
     @Environment(AppState.self) private var appState
     @Environment(\.openWindow) private var openWindow
 
-    @AppStorage("selectedExampleID") var selectedExampleID: ExampleMeta.ID?
+    @AppStorage("selectedExampleID") var selectedExampleID: Example.ID?
 
     @State private var searchText = ""
 
@@ -45,7 +45,7 @@ struct ExampleListView: View {
         .padding()
     }
 
-    private var filteredItems: [ExampleMeta] {
+    private var filteredItems: [Example] {
         let words = searchText.split(separator: " ").map { String($0).lowercased() }
         guard !words.isEmpty else { return appState.examples }
 

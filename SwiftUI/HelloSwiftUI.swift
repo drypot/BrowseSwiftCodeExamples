@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct HelloSwiftUI: View {
-    @Environment(AppState.self) private var appState
-    @Environment(ExampleMeta.self) private var exampleMeta
+    @Environment(Example.self) private var example
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -20,7 +19,7 @@ struct HelloSwiftUI: View {
     }
 
     var exampleHeader: some View {
-        ExampleHeader(meta: exampleMeta)
+        ExampleHeader(example: example)
     }
 
     @ViewBuilder
