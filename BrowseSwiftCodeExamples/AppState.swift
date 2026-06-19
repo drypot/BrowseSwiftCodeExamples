@@ -15,7 +15,7 @@ enum ExampleCategory: Int {
 }
 
 @Observable
-final class Example: Identifiable {
+final class ExampleMeta: Identifiable {
     let title: String
     let relativePath: String
     let category: ExampleCategory
@@ -35,15 +35,18 @@ final class Example: Identifiable {
 
 @Observable
 class AppState {
-    let examples: [Example] = [
-        Example(title: "Hello SwiftUI", relativePath: "SwiftUI/HelloSwiftUI.swift", category: .swiftUI, view: AnyView(HelloSwiftUI()))
+    let examples: [ExampleMeta] = [
+        ExampleMeta(title: "Hello SwiftUI",
+                relativePath: "SwiftUI/HelloSwiftUI.swift",
+                category: .swiftUI,
+                view: AnyView(HelloSwiftUI()))
     ]
 
-    var currentExample: Example?
+    var currentExample: ExampleMeta?
 
-    var isShowExampleWindow = false
+    var isExampleWindowOpened = false
 
-    func updateCurrentExample(withID id: Example.ID?) {
+    func updateCurrentExample(withID id: ExampleMeta.ID?) {
         guard let id else {
             currentExample = nil
             return

@@ -9,16 +9,22 @@ import SwiftUI
 
 struct HelloSwiftUI: View {
     @Environment(AppState.self) private var appState
-    @Environment(Example.self) private var example
+    @Environment(ExampleMeta.self) private var exampleMeta
 
     var body: some View {
         VStack(alignment: .leading) {
-            ExampleHeader(example: example)
-
-            VStack {
-                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            exampleHeader
+            exampleBody
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+    }
+
+    var exampleHeader: some View {
+        ExampleHeader(meta: exampleMeta)
+    }
+
+    @ViewBuilder
+    var exampleBody: some View {
+        Text("Hello, SwiftUI!")
     }
 }
