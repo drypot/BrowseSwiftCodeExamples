@@ -23,6 +23,28 @@ struct ExampleListView: View {
 
     @State private var searchText = ""
 
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            searchFieldBody
+            listBody
+        }
+        .task(updateCurrentExample)
+    }
+
+    var searchFieldBody: some View {
+        HStack {
+            Image(systemName: "magnifyingglass")
+            TextField("Search", text: $searchText)
+                .textFieldStyle(.plain)
+        }
+        .padding(8)
+        .background {
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(.gray.opacity(0.4))
+        }
+        .padding()
+    }
+
     private var filteredItems: [ExampleMeta] {
         let words = searchText.split(separator: " ").map { String($0).lowercased() }
         guard !words.isEmpty else { return appState.examples }
@@ -35,33 +57,14 @@ struct ExampleListView: View {
         }
     }
 
-    var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            HStack {
-                Image(systemName: "magnifyingglass")
-                TextField("Search", text: $searchText)
-                    .textFieldStyle(.plain)
-            }
-            .padding(8)
-            .background {
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(.gray.opacity(0.4))
-            }
-            .padding()
-
-            List(filteredItems, selection: $selectedExampleID) { example in
-                Text(example.title)
-            }
-            .onChange(of: selectedExampleID) {
-                updateExample()
-            }
-            .task {
-                updateExample()
-            }
+    var listBody: some View {
+        List(filteredItems, selection: $selectedExampleID) { example in
+            Text(example.title)
         }
+        .onChange(of: selectedExampleID, updateCurrentExample)
     }
 
-    func updateExample() {
+    func updateCurrentExample() {
         appState.updateCurrentExample(withID: selectedExampleID)
         if !appState.isExampleWindowOpened {
             openWindow(id: "example")
