@@ -9,9 +9,10 @@ import SwiftUI
 import Observation
 
 enum ExampleCategory: Int {
-    case swift = 1
-    case swiftUI = 2
-    case combine = 3
+    case hello
+    case swift
+    case swiftUI
+    case combine
 }
 
 @Observable
@@ -36,7 +37,8 @@ final class Example: Identifiable {
 @Observable
 class AppState {
     let examples: [Example] = [
-        Example(title: "Hello SwiftUI", relativePath: "SwiftUI/HelloSwiftUI.swift", category: .swiftUI, makeView: { AnyView(HelloSwiftUI()) })
+        Example(title: "Hello SwiftUI", relativePath: "SwiftUI/HelloSwiftUI.swift", category: .hello, makeView: { AnyView(HelloSwiftUI()) }),
+        Example(title: "SwiftUI, Text, Font", relativePath: "SwiftUI/FontExample.swift", category: .swiftUI, makeView: { AnyView(FontExample()) }),
     ]
 
     var currentExample: Example?

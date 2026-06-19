@@ -53,6 +53,7 @@ struct ExampleHeader: View {
             }
         }
         .padding()
+
         Divider()
     }
 }
