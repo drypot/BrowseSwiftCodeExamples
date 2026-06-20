@@ -41,14 +41,25 @@ class AppState {
         Example(title: "SwiftUI, Text, Font", relativePath: "SwiftUI/FontExample.swift", category: .swiftUI, makeView: { AnyView(FontExample()) }),
     ]
 
-    var currentExample: Example?
+    var selectedExampleID: Example.ID? {
+        didSet {
+            UserDefaults.standard.set(selectedExampleID, forKey: "selectedExampleID")
+        }
+    }
+
+    var selectedExample: Example?
+
     var isExampleWindowOpened = false
 
-    func updateCurrentExample(withID id: Example.ID?) {
-        guard let id else {
-            currentExample = nil
-            return
+    init() {
+        selectedExampleID = UserDefaults.standard.string(forKey: "selectedExampleID")
+    }
+
+    func updateSelectedExample() {
+        if let selectedExampleID {
+            selectedExample = examples.first { $0.id ==  selectedExampleID }
+        } else {
+            selectedExample = nil
         }
-        currentExample = examples.first { $0.id ==  id }
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ExampleListWindow: Scene {
     var body: some Scene {
-        Window("Example List", id: "exampleList") {
+        Window("Examples", id: "examples") {
             ExampleListView()
         }
     }
@@ -19,8 +19,6 @@ struct ExampleListView: View {
     @Environment(AppState.self) private var appState
     @Environment(\.openWindow) private var openWindow
 
-    @AppStorage("selectedExampleID") var selectedExampleID: Example.ID?
-
     @State private var searchText = ""
 
     var body: some View {
@@ -28,7 +26,7 @@ struct ExampleListView: View {
             searchFieldBody
             listBody
         }
-        .task(updateCurrentExample)
+        .task(updateExampleWindow)
     }
 
     var searchFieldBody: some View {
@@ -57,15 +55,17 @@ struct ExampleListView: View {
         }
     }
 
+    @ViewBuilder
     var listBody: some View {
-        List(filteredItems, selection: $selectedExampleID) { example in
+        @Bindable var appState = appState
+        List(filteredItems, selection: $appState.selectedExampleID) { example in
             Text(example.title)
         }
-        .onChange(of: selectedExampleID, updateCurrentExample)
+        .onChange(of: appState.selectedExampleID, updateExampleWindow)
     }
 
-    func updateCurrentExample() {
-        appState.updateCurrentExample(withID: selectedExampleID)
+    func updateExampleWindow() {
+        appState.updateSelectedExample()
         if !appState.isExampleWindowOpened {
             openWindow(id: "example")
         }

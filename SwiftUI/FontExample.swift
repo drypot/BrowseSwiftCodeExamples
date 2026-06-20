@@ -25,7 +25,6 @@ struct FontExample: View {
         ExampleHeader(example: example)
     }
 
-    @ViewBuilder
     var exampleBody: some View {
         ScrollView {
             fontList
@@ -35,7 +34,6 @@ struct FontExample: View {
         .frame(maxHeight: .infinity)
     }
 
-    @ViewBuilder
     var fontList: some View {
         VStack(alignment: .leading) {
             Text(sampleText).font(.largeTitle)

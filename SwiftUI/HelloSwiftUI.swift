@@ -21,7 +21,6 @@ struct HelloSwiftUI: View {
         ExampleHeader(example: example)
     }
 
-    @ViewBuilder
     var exampleBody: some View {
         Text("Hello, SwiftUI!")
             .frame(maxWidth: .infinity, maxHeight: .infinity)

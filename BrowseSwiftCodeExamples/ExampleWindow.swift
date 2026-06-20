@@ -24,7 +24,7 @@ struct ExampleView: View {
 
     var body: some View {
         Group {
-            if let example = appState.currentExample {
+            if let example = appState.selectedExample {
                 example.makeView()
                     .environment(example)
             } else {
