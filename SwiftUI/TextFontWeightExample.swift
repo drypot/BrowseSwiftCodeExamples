@@ -10,8 +10,6 @@ import SwiftUI
 struct TextFontWeightExample: View {
     @Environment(Example.self) private var example
 
-    @ScaledMetric var customFontSize = 16
-
     let sampleText = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit."
 
     var body: some View {
@@ -28,6 +26,7 @@ struct TextFontWeightExample: View {
     var exampleBody: some View {
         ScrollView {
             textList
+                .textSelection(.enabled)
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
@@ -63,6 +62,5 @@ struct TextFontWeightExample: View {
             Text(sampleText).fontWeight(.ultraLight)
             Text(".fontWeight(.ultraLight)").font(.caption).padding(.bottom)
         }
-        .textSelection(.enabled)
     }
 }

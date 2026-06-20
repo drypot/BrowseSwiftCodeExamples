@@ -28,6 +28,7 @@ struct TextFontExample: View {
     var exampleBody: some View {
         ScrollView {
             textList
+                .textSelection(.enabled)
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
@@ -78,6 +79,5 @@ struct TextFontExample: View {
             Text(sampleText).font(.custom("Arial", size: customFontSize))
             Text(".custom(\"Arial\", size: ...)").font(.caption).padding(.bottom)
         }
-        .textSelection(.enabled)
     }
 }
