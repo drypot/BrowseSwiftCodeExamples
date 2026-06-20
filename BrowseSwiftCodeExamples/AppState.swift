@@ -38,7 +38,8 @@ final class Example: Identifiable {
 class AppState {
     let examples: [Example] = [
         Example(title: "Hello SwiftUI", relativePath: "SwiftUI/HelloSwiftUI.swift", category: .hello, makeView: { AnyView(HelloSwiftUI()) }),
-        Example(title: "SwiftUI, Text, Font", relativePath: "SwiftUI/FontExample.swift", category: .swiftUI, makeView: { AnyView(FontExample()) }),
+        Example(title: "SwiftUI, Text, Font", relativePath: "SwiftUI/TextFontExample.swift", category: .swiftUI, makeView: { AnyView(TextFontExample()) }),
+        Example(title: "SwiftUI, Text, FontWeight", relativePath: "SwiftUI/TextFontWeightExample.swift", category: .swiftUI, makeView: { AnyView(TextFontWeightExample()) }),
     ]
 
     var selectedExampleID: Example.ID? {

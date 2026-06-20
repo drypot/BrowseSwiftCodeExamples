@@ -1,5 +1,5 @@
 //
-//  FontExample.swift
+//  TextFontExample.swift
 //  Browse Swift Code Examples
 //
 //  Created by Kyuhyun Park on 6/19/26.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FontExample: View {
+struct TextFontExample: View {
     @Environment(Example.self) private var example
 
     @ScaledMetric var customFontSize = 16
@@ -27,14 +27,14 @@ struct FontExample: View {
 
     var exampleBody: some View {
         ScrollView {
-            fontList
+            textList
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
         .frame(maxHeight: .infinity)
     }
 
-    var fontList: some View {
+    var textList: some View {
         VStack(alignment: .leading) {
             Text(sampleText).font(.largeTitle)
             Text(".font(.largeTitle)").font(.caption).padding(.bottom)
