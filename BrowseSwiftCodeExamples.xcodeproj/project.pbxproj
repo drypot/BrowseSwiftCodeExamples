@@ -18,9 +18,10 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				HelloSwiftUI.swift,
-				TextColorExample.swift,
 				TextFontExample.swift,
 				TextFontWeightExample.swift,
+				TextStyleExample.swift,
+				TextStyleNSColorExample.swift,
 			);
 			target = 006E08932FDED58000756614 /* Browse Swift Code Examples */;
 		};

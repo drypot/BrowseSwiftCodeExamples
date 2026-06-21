@@ -9,8 +9,8 @@ import SwiftUI
 
 @main
 struct BrowseSwiftCodeExamplesApp: App {
-    @NSApplicationDelegateAdaptor var appDelegate: AppDelegate
-    
+    //@NSApplicationDelegateAdaptor var appDelegate: AppDelegate
+
     @State private var appState = AppState()
 
     var body: some Scene {
@@ -25,8 +25,8 @@ struct BrowseSwiftCodeExamplesApp: App {
 // https://developer.apple.com/documentation/appkit/nsapplicationdelegate
 // https://developer.apple.com/documentation/swiftui/nsapplicationdelegateadaptor
 
-class AppDelegate: NSObject, NSApplicationDelegate {
-    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
-        return true
-    }
-}
+//class AppDelegate: NSObject, NSApplicationDelegate {
+//    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+//        return true
+//    }
+//}

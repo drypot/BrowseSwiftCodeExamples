@@ -40,7 +40,8 @@ class AppState {
         Example(title: "Hello SwiftUI", relativePath: "SwiftUI/HelloSwiftUI.swift", category: .hello, makeView: { AnyView(HelloSwiftUI()) }),
         Example(title: "SwiftUI, Text, Font", relativePath: "SwiftUI/TextFontExample.swift", category: .swiftUI, makeView: { AnyView(TextFontExample()) }),
         Example(title: "SwiftUI, Text, FontWeight", relativePath: "SwiftUI/TextFontWeightExample.swift", category: .swiftUI, makeView: { AnyView(TextFontWeightExample()) }),
-        Example(title: "SwiftUI, Text, Color", relativePath: "SwiftUI/TextColorExample.swift", category: .swiftUI, makeView: { AnyView(TextColorExample()) }),
+        Example(title: "SwiftUI, Text, Style", relativePath: "SwiftUI/TextStyleExample.swift", category: .swiftUI, makeView: { AnyView(TextStyleExample()) }),
+        Example(title: "SwiftUI, Text, NSColor", relativePath: "SwiftUI/TextStyleNSColorExample.swift", category: .swiftUI, makeView: { AnyView(TextStyleNSColorExample()) }),
     ]
 
     var selectedExampleID: Example.ID? {

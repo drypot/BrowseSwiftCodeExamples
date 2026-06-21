@@ -26,7 +26,12 @@ struct ExampleListView: View {
             searchFieldBody
             listBody
         }
-        .task(updateExampleWindow)
+        .task {
+            updateExampleWindow()
+        }
+        .onDisappear {
+            terminate()
+        }
     }
 
     var searchFieldBody: some View {
@@ -69,6 +74,10 @@ struct ExampleListView: View {
         if !appState.isExampleWindowOpened {
             openWindow(id: "example")
         }
+    }
+
+    func terminate() {
+        NSApplication.shared.terminate(nil)
     }
 }
 
