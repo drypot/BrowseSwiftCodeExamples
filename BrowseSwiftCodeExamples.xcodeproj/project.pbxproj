@@ -17,6 +17,7 @@
 		003EEFA02FE173D600C5E1F9 /* Exceptions for "SwiftUI" folder in "Browse Swift Code Examples" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Form/FormExample.swift,
 				HelloSwiftUI.swift,
 				Text/TextFontExample.swift,
 				Text/TextFontWeightExample.swift,
