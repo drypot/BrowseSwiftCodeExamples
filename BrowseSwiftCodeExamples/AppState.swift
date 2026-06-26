@@ -43,6 +43,7 @@ class AppState {
         Example(title: "SwiftUI, Text, Style", relativePath: "SwiftUI/Text/TextStyleExample.swift", category: .swiftUI, makeView: { AnyView(TextStyleExample()) }),
         Example(title: "SwiftUI, Text, NSColor", relativePath: "SwiftUI/Text/TextStyleNSColorExample.swift", category: .swiftUI, makeView: { AnyView(TextStyleNSColorExample()) }),
         Example(title: "SwiftUI, Form", relativePath: "SwiftUI/Form/FormExample.swift", category: .swiftUI, makeView: { AnyView(FormExample()) }),
+        Example(title: "SwiftUI, NavigationSplitView", relativePath: "SwiftUI/Navigation/NavigationSplitViewExample.swift", category: .swiftUI, makeView: { AnyView(NavigationSplitViewExample()) }),
     ]
 
     var selectedExampleID: Example.ID? {

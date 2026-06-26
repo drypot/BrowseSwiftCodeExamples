@@ -19,6 +19,7 @@
 			membershipExceptions = (
 				Form/FormExample.swift,
 				HelloSwiftUI.swift,
+				Navigation/NavigationSplitViewExample.swift,
 				Text/TextFontExample.swift,
 				Text/TextFontWeightExample.swift,
 				Text/TextStyleExample.swift,
