@@ -59,60 +59,139 @@ struct NavigationSplitViewExample: View {
 
     @State var selectedProductID: Product.ID?
     @State var selectedPartID: Part.ID?
-//    @State var path = NavigationPath()
+    @State var isInspectorPresented = false
+    @State var searchText = ""
 
     var body: some View {
-
         NavigationSplitView {
-            List(Self.productTable, selection: $selectedProductID) { product in
-                NavigationLink(product.name, value: product.id)
-            }
-            .contextMenu(forSelectionType: Product.ID.self) { selection in
-                ForEach(selection.sorted(), id:\.self) { productID in
-                    Button("Action on \(productID)") {
-                        print("action on: \(productID)")
-                    }
-                }
-            }
-            .onChange(of: selectedProductID) {
-                selectedPartID = nil
-            }
+            productListView
+                .searchable(text: $searchText)
         } content: {
-            if let selectedProductID, let product = Self.productDic[selectedProductID] {
-                List(product.parts, selection: $selectedPartID) { part in
-                    NavigationLink(part.name, value: part.id)
+            partListView
+        } detail: {
+            detailView
+        }
+        .navigationTitle("Demo App")
+        .inspector(isPresented: $isInspectorPresented) {
+            Text("Inspector")
+                .padding()
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        }
+        .task {
+            initView()
+        }
+    }
 
-//                    Button(part.name) {
-//                        path.append(part.id)
-//                    }
-//                    .buttonStyle(.plain)
+    var productListView: some View {
+        List(Self.productTable, selection: $selectedProductID) { product in
+            NavigationLink(product.name, value: product.id)
+        }
+        .contextMenu(forSelectionType: Product.ID.self) { selection in
+            ForEach(selection.sorted(), id:\.self) { productID in
+                Button("Action on \(productID)") {
+                    print("action on: \(productID)")
                 }
-                .contextMenu(forSelectionType: Part.ID.self) { selection in
-                    ForEach(selection.sorted(), id:\.self) { partID in
-                        Button("Action on \(partID)") {
-                            print("action on: \(partID)")
-                        }
+            }
+        }
+        .onChange(of: selectedProductID) {
+            selectedPartID = nil
+        }
+        .toolbar {
+            ToolbarItem {
+                Button("more", systemImage: "ellipsis") {
+                }
+                .help("More")
+            }
+        }
+    }
+
+    @ViewBuilder
+    var partListView: some View {
+        if let selectedProductID, let product = Self.productDic[selectedProductID] {
+            List(product.parts, selection: $selectedPartID) { part in
+                NavigationLink(part.name, value: part.id)
+            }
+            .contextMenu(forSelectionType: Part.ID.self) { selection in
+                ForEach(selection.sorted(), id:\.self) { partID in
+                    Button("Action on \(partID)") {
+                        print("action on: \(partID)")
                     }
                 }
             }
-        } detail: {
-            if let selectedPartID, let part = Self.partDic[selectedPartID] {
-                Text("\(part.name) detail")
-            } else {
-                Text("...")
+            .toolbar {
+                ToolbarItem {
+                    Button("more", systemImage: "ellipsis") {
+                    }
+                    .help("More")
+                }
             }
-
-//            NavigationStack(path: $path) {
-//                Text("...")
-//                    .navigationDestination(for: Part.ID.self) { partID in
-//                        if let part = Self.partDic[partID] {
-//                            Text("\(part.name) detail")
-//                        }
-//                    }
-//            }
 
         }
-        .navigationTitle("NavigationSplitView Demo")
+    }
+
+    var detailView: some View {
+        ScrollView {
+            let message = if let selectedPartID, let part = Self.partDic[selectedPartID] {
+                "\(part.name) detail\n\n" + SampleText.longText
+            } else {
+                "..."
+            }
+            Text(message)
+                .padding()
+                //.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        }
+        .toolbar {
+            ToolbarItemGroup {
+                Button("Reload", systemImage: "arrow.clockwise") {
+                }
+                .help("Reload")
+            }
+
+            ToolbarSpacer(.fixed)
+
+            ToolbarItemGroup {
+                Button("New File", systemImage: "square.and.pencil") {
+                }
+                .help("New File")
+
+                Button("New File...", systemImage: "bubble.and.pencil") {
+                }
+                .help("New File...")
+
+                Button("New Folder", systemImage: "folder.badge.plus") {
+                }
+                .help("New Folder")
+
+                Button("Show History", systemImage: "clock") {
+                }
+                .help("Show History")
+            }
+
+            ToolbarSpacer(.fixed)
+
+            ToolbarItem {
+                Button("Search", systemImage: "magnifyingglass") {
+                }
+                .help("Search")
+            }
+
+            ToolbarSpacer(.fixed)
+
+            ToolbarItem {
+                Button {
+                    isInspectorPresented.toggle()
+                } label: {
+                    Image(systemName: "sidebar.right")
+                        .help("Inspector")
+                }
+            }
+        }
+        //.toolbar(removing: .title)
+        //.scrollEdgeEffectStyle(.hard, for: .top) // 컨텐츠가 툴바 아래를 지날 때 비쳐보이지 않게 한다.
+    }
+
+    func initView() {
+        selectedProductID = Self.productTable[0].id
     }
 }
 
