@@ -49,7 +49,7 @@ struct ExampleHeader: View {
             let url = URL(string: urlString)!
             Text(example.title).font(.title)
             Link(destination: url) {
-                Text(urlString)
+                Text("GitHub Source Code")
             }
         }
         .padding()

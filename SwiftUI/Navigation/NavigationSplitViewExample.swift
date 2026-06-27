@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NavigationSplitViewExample: View {
+    @Environment(Example.self) private var example
 
     // Part
 
@@ -62,6 +63,16 @@ struct NavigationSplitViewExample: View {
     @State var isInspectorPresented = false
     @State var searchText = ""
 
+    func findSelectedProduct() -> Product? {
+        guard let selectedProductID else { return nil }
+        return Self.productDic[selectedProductID]
+    }
+
+    func findSelectedPart() -> Part? {
+        guard let selectedPartID else { return nil }
+        return Self.partDic[selectedPartID]
+    }
+
     var body: some View {
         NavigationSplitView {
             productListView
@@ -105,42 +116,44 @@ struct NavigationSplitViewExample: View {
         }
     }
 
-    @ViewBuilder
     var partListView: some View {
-        if let selectedProductID, let product = Self.productDic[selectedProductID] {
-            List(product.parts, selection: $selectedPartID) { part in
-                NavigationLink(part.name, value: part.id)
-            }
-            .contextMenu(forSelectionType: Part.ID.self) { selection in
-                ForEach(selection.sorted(), id:\.self) { partID in
-                    Button("Action on \(partID)") {
-                        print("action on: \(partID)")
-                    }
+        List(findSelectedProduct()?.parts ?? [], selection: $selectedPartID) { part in
+            NavigationLink(part.name, value: part.id)
+        }
+        .contextMenu(forSelectionType: Part.ID.self) { selection in
+            ForEach(selection.sorted(), id:\.self) { partID in
+                Button("Action on \(partID)") {
+                    print("action on: \(partID)")
                 }
             }
-            .toolbar {
-                ToolbarItem {
-                    Button("more", systemImage: "ellipsis") {
-                    }
-                    .help("More")
+        }
+        .toolbar {
+            ToolbarItem {
+                Button("more", systemImage: "ellipsis") {
                 }
+                .help("More")
             }
-
         }
     }
 
     var detailView: some View {
         ScrollView {
-            let message = if let selectedPartID, let part = Self.partDic[selectedPartID] {
-                "\(part.name) detail\n\n" + SampleText.longText
-            } else {
-                "..."
+            VStack(alignment: .leading) {
+                if let part = findSelectedPart() {
+                    Text(part.name)
+                        .font(.title)
+                        .padding(.bottom)
+                    Text(SampleText.longText)
+                } else {
+                    ExampleHeader(example: example)
+                }
             }
-            Text(message)
-                .padding()
-                //.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            .padding()
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
         .toolbar {
+            ToolbarSpacer(.flexible)
+
             ToolbarItemGroup {
                 Button("Reload", systemImage: "arrow.clockwise") {
                 }
@@ -167,7 +180,7 @@ struct NavigationSplitViewExample: View {
                 .help("Show History")
             }
 
-            ToolbarSpacer(.fixed)
+            ToolbarSpacer(.flexible)
 
             ToolbarItem {
                 Button("Search", systemImage: "magnifyingglass") {
