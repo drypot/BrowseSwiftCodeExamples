@@ -1,5 +1,5 @@
 //
-//  AppState.swift
+//  ExampleAppState.swift
 //  Browse Swift Code Examples
 //
 //  Created by Kyuhyun Park on 6/16/26.
@@ -9,7 +9,7 @@ import SwiftUI
 import Observation
 
 @Observable
-class AppState {
+class ExampleAppState {
     var selectedExampleID: Example.ID? {
         didSet {
             UserDefaults.standard.set(selectedExampleID, forKey: "selectedExampleID")

@@ -16,7 +16,7 @@ struct ExampleWindow: Scene {
 }
 
 struct ExampleView: View {
-    @Environment(AppState.self) private var appState
+    @Environment(ExampleAppState.self) private var appState
 
     var body: some View {
         Group {

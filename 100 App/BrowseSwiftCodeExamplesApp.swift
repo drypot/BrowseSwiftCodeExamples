@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct BrowseSwiftCodeExamplesApp: App {
-    @State private var appState = AppState()
+    @State private var appState = ExampleAppState()
 
     var body: some Scene {
         ExampleListWindow()

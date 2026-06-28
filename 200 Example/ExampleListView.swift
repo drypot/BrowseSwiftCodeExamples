@@ -16,7 +16,7 @@ struct ExampleListWindow: Scene {
 }
 
 struct ExampleListView: View {
-    @Environment(AppState.self) private var appState
+    @Environment(ExampleAppState.self) private var appState
     @Environment(\.openWindow) private var openWindow
 
     @State private var searchText = ""

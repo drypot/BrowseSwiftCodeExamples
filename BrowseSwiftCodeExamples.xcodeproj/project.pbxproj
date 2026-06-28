@@ -31,7 +31,7 @@
 		008410082FF14C9B00A6B6DD /* Exceptions for "110 AppState" folder in "Browse Swift Code Examples" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				AppState.swift,
+				ExampleAppState.swift,
 			);
 			target = 006E08932FDED58000756614 /* Browse Swift Code Examples */;
 		};

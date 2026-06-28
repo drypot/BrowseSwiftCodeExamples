@@ -8,7 +8,7 @@
 import SwiftUI
 
 @Observable
-fileprivate class TempAppState {
+fileprivate class AppState {
     var fontName = "Menlo"
     var fontSize = 16.0
     var lineHeightMultiple = 1.3
@@ -59,7 +59,7 @@ fileprivate class TempAppState {
 }
 
 struct FormExample: View {
-    @State private var appState = TempAppState()
+    @State private var appState = AppState()
     @State private var sampleText = SampleText.paragraph
 
     var body: some View {
@@ -106,11 +106,11 @@ struct FormExample: View {
             Section {
                 let tabKeyActionBinding = Binding<Int>(
                     get: { appState.tabKeyAction.rawValue },
-                    set: { appState.tabKeyAction = TempAppState.TabKeyAction(rawValue: $0) ?? .default }
+                    set: { appState.tabKeyAction = AppState.TabKeyAction(rawValue: $0) ?? .default }
                 )
                 Picker("Tab key action", selection: tabKeyActionBinding) {
-                    Text("Insert Tab").tag(TempAppState.TabKeyAction.default.rawValue)
-                    Text("Indent with Space").tag(TempAppState.TabKeyAction.indentWithSpace.rawValue)
+                    Text("Insert Tab").tag(AppState.TabKeyAction.default.rawValue)
+                    Text("Indent with Space").tag(AppState.TabKeyAction.indentWithSpace.rawValue)
                 }
 
                 let indentSizeBinding = Binding<Double>(
