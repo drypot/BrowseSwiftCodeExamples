@@ -21,33 +21,6 @@ struct ExampleListView: View {
 
     @State private var searchText = ""
 
-    var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            searchFieldBody
-            listBody
-        }
-        .task {
-            updateExampleView()
-        }
-        .onDisappear {
-            terminate()
-        }
-    }
-
-    var searchFieldBody: some View {
-        HStack {
-            Image(systemName: "magnifyingglass")
-            TextField("Search", text: $searchText)
-                .textFieldStyle(.plain)
-        }
-        .padding(8)
-        .background {
-            RoundedRectangle(cornerRadius: 8)
-                .stroke(.gray.opacity(0.4))
-        }
-        .padding()
-    }
-
     private var filteredItems: [Example] {
         let words = searchText.split(separator: " ").map { String($0).lowercased() }
         guard !words.isEmpty else { return Example.table }
@@ -58,6 +31,23 @@ struct ExampleListView: View {
         }
     }
 
+    var body: some View {
+        NavigationSplitView {
+            listBody
+                .frame(minWidth: 220)
+        } detail: {
+            detailBody
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        }
+        .searchable(text: $searchText)
+        .task {
+            updateExampleView()
+        }
+        .onDisappear {
+            terminate()
+        }
+    }
+
     @ViewBuilder
     var listBody: some View {
         @Bindable var appState = appState
@@ -65,6 +55,22 @@ struct ExampleListView: View {
             Text(example.title)
         }
         .onChange(of: appState.selectedExampleID, updateExampleView)
+    }
+
+    var detailBody: some View {
+        VStack(alignment: .leading) {
+            if let example = appState.selectedExample {
+                let urlString = "https://github.com/drypot/BrowseSwiftCodeExamples/blob/main/" + example.relativePath
+                let url = URL(string: urlString)!
+                Text(example.title).font(.title)
+                Link(destination: url) {
+                    Text("Open GitHub source code")
+                }
+            } else {
+                Text("...")
+            }
+        }
+        .padding()
     }
 
     func updateExampleView() {
@@ -78,4 +84,3 @@ struct ExampleListView: View {
         NSApplication.shared.terminate(nil)
     }
 }
-

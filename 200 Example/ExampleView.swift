@@ -34,21 +34,3 @@ struct ExampleView: View {
         }
     }
 }
-
-struct ExampleHeader: View {
-    let example: Example
-
-    var body: some View {
-        VStack(alignment: .leading) {
-            let urlString = "https://github.com/drypot/BrowseSwiftCodeExamples/blob/main/" + example.relativePath
-            let url = URL(string: urlString)!
-            Text(example.title).font(.title)
-            Link(destination: url) {
-                Text("GitHub Source Code")
-            }
-        }
-        .padding()
-
-        Divider()
-    }
-}
