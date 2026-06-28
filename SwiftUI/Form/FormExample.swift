@@ -7,42 +7,68 @@
 
 import SwiftUI
 
-struct FormExample: View {
+@Observable
+fileprivate class FormState {
+    var fontName = "Menlo"
+    var fontSize = 16.0
+    var lineHeightMultiple = 1.3
 
-    @Observable class AppState {
-        var sampleText = "Sample text"
-
-        var fontName = "Menlo"
-        var fontSize = 16.0
-        var lineHeightMultiple = 1.3
-
-        var isAutoSaveEnabled = true
-        var autoSaveDelay = 2
-
-        enum TabKeyAction: Int {
-            case `default` = 0
-            case indentWithSpace = 1
-        }
-
-        var tabKeyAction = TabKeyAction.indentWithSpace
-        var indentSize = 4
-
-        @ObservationIgnored
-        lazy var fontManager = { FontManager(appState: self) }()
-
-        func makeNSFont() -> NSFont {
-            NSFont(name: fontName, size: fontSize) ?? .systemFont(ofSize: 13)
-        }
+    var lineSpacing: Double {
+        (lineHeightMultiple - 1) * fontSize
     }
 
-    @State private var appState = AppState()
+    var isAutoSaveEnabled = true
+    var autoSaveDelay = 2
+
+    enum TabKeyAction: Int {
+        case `default` = 0
+        case indentWithSpace = 1
+    }
+
+    var tabKeyAction = TabKeyAction.indentWithSpace
+    var indentSize = 4
+
+    func makeNSFont() -> NSFont {
+        NSFont(name: fontName, size: fontSize) ?? .systemFont(ofSize: 13)
+    }
+
+    private var fontPanelFont: NSFont?
+
+    func showFontPanel() {
+        self.fontPanelFont = makeNSFont()
+        guard let fontPanelFont else { return }
+
+        let manager = NSFontManager.shared
+        manager.target = self
+        manager.action = #selector(onFontPanelChange(_:))
+
+        NSFontPanel.shared.setPanelFont(fontPanelFont, isMultiple: false)
+        NSFontPanel.shared.makeKeyAndOrderFront(nil)
+    }
+
+    @objc func onFontPanelChange(_ sender: Any?) {
+        guard let manager = sender as? NSFontManager else { return }
+        guard let fontPanelFont else { return }
+
+        let newFont = manager.convert(fontPanelFont)
+        self.fontPanelFont = newFont
+
+        fontName = newFont.fontName
+        fontSize = newFont.pointSize
+    }
+}
+
+struct FormExample: View {
+
+    @State private var appState = FormState()
+    @State private var sampleText = SampleText.paragraph
 
     var body: some View {
         Form {
             Section("Font") {
                 LabeledContent("Font: \(appState.fontName)") {
                     Button("Change Font") {
-                        appState.fontManager.showFontPanel()
+                        appState.showFontPanel()
                     }
                 }
 
@@ -56,8 +82,9 @@ struct FormExample: View {
                 }
                 .controlSize(.mini)
 
-                TextEditor(text: $appState.sampleText)
+                TextEditor(text: $sampleText)
                     .font(Font.custom(appState.fontName, size: appState.fontSize))
+                    .lineSpacing(appState.lineSpacing)
                     .frame(minHeight: 120)
             }
 
@@ -75,17 +102,16 @@ struct FormExample: View {
                 }
                 .disabled(!appState.isAutoSaveEnabled)
                 .controlSize(.mini)
-
             }
 
             Section {
                 let tabKeyActionBinding = Binding<Int>(
                     get: { appState.tabKeyAction.rawValue },
-                    set: { appState.tabKeyAction = AppState.TabKeyAction(rawValue: $0) ?? .default }
+                    set: { appState.tabKeyAction = FormState.TabKeyAction(rawValue: $0) ?? .default }
                 )
                 Picker("Tab key action", selection: tabKeyActionBinding) {
-                    Text("Insert Tab").tag(AppState.TabKeyAction.default.rawValue)
-                    Text("Indent with Space").tag(AppState.TabKeyAction.indentWithSpace.rawValue)
+                    Text("Insert Tab").tag(FormState.TabKeyAction.default.rawValue)
+                    Text("Indent with Space").tag(FormState.TabKeyAction.indentWithSpace.rawValue)
                 }
 
                 let indentSizeBinding = Binding<Double>(
@@ -109,38 +135,6 @@ struct FormExample: View {
         .formStyle(.grouped)
         .navigationTitle("Settings")
         .frame(minWidth: 500, minHeight: 500)
-    }
-
-    final class FontManager: NSObject {
-        private let appState: AppState
-        private var initFont: NSFont?
-
-        init(appState: AppState) {
-            self.appState = appState
-        }
-
-        func showFontPanel() {
-            let initFont = NSFont(name: appState.fontName, size: appState.fontSize) ?? .systemFont(ofSize: 13)
-            self.initFont = initFont
-
-            let manager = NSFontManager.shared
-            manager.target = self
-            manager.action = #selector(onChange(_:))
-
-            NSFontPanel.shared.setPanelFont(initFont, isMultiple: false)
-            NSFontPanel.shared.makeKeyAndOrderFront(nil)
-        }
-
-        @objc func onChange(_ sender: Any?) {
-            guard let manager = sender as? NSFontManager else { return }
-            guard let initFont else { return }
-
-            let newFont = manager.convert(initFont)
-            self.initFont = newFont
-
-            appState.fontName = newFont.fontName
-            appState.fontSize = newFont.pointSize
-        }
     }
 }
 
