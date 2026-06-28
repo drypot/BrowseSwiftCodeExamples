@@ -14,7 +14,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		003EEFA02FE173D600C5E1F9 /* Exceptions for "SwiftUI" folder in "Browse Swift Code Examples" target */ = {
+		003EEFA02FE173D600C5E1F9 /* Exceptions for "310 SwiftUI" folder in "Browse Swift Code Examples" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Form/FormExample.swift,
@@ -24,10 +24,27 @@
 				Text/TextFontWeightExample.swift,
 				Text/TextStyleExample.swift,
 				Text/TextStyleNSColorExample.swift,
+				Tree/SwiftUIView.swift,
 			);
 			target = 006E08932FDED58000756614 /* Browse Swift Code Examples */;
 		};
-		00C2CCF02FEFCAD900EECB1C /* Exceptions for "Common" folder in "Browse Swift Code Examples" target */ = {
+		008410082FF14C9B00A6B6DD /* Exceptions for "110 AppState" folder in "Browse Swift Code Examples" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				AppState.swift,
+			);
+			target = 006E08932FDED58000756614 /* Browse Swift Code Examples */;
+		};
+		0084102D2FF14E1900A6B6DD /* Exceptions for "200 Example" folder in "Browse Swift Code Examples" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Example.swift,
+				ExampleListView.swift,
+				ExampleView.swift,
+			);
+			target = 006E08932FDED58000756614 /* Browse Swift Code Examples */;
+		};
+		00C2CCF02FEFCAD900EECB1C /* Exceptions for "120 Common" folder in "Browse Swift Code Examples" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SampleText.swift,
@@ -37,35 +54,51 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		003EEF952FE1721B00C5E1F9 /* Swift */ = {
+		003EEF952FE1721B00C5E1F9 /* 300 Swift */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Swift;
+			path = "300 Swift";
 			sourceTree = "<group>";
 		};
-		003EEF972FE1723A00C5E1F9 /* SwiftUI */ = {
+		003EEF972FE1723A00C5E1F9 /* 310 SwiftUI */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				003EEFA02FE173D600C5E1F9 /* Exceptions for "SwiftUI" folder in "Browse Swift Code Examples" target */,
+				003EEFA02FE173D600C5E1F9 /* Exceptions for "310 SwiftUI" folder in "Browse Swift Code Examples" target */,
 			);
-			path = SwiftUI;
+			path = "310 SwiftUI";
 			sourceTree = "<group>";
 		};
-		003EEF992FE1724400C5E1F9 /* Combine */ = {
+		003EEF992FE1724400C5E1F9 /* 400 Combine */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Combine;
+			path = "400 Combine";
 			sourceTree = "<group>";
 		};
-		006E08962FDED58000756614 /* BrowseSwiftCodeExamples */ = {
+		006E08962FDED58000756614 /* 100 App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = BrowseSwiftCodeExamples;
+			path = "100 App";
 			sourceTree = "<group>";
 		};
-		00C2CCEC2FEFCAC700EECB1C /* Common */ = {
+		008410072FF14C9100A6B6DD /* 110 AppState */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				00C2CCF02FEFCAD900EECB1C /* Exceptions for "Common" folder in "Browse Swift Code Examples" target */,
+				008410082FF14C9B00A6B6DD /* Exceptions for "110 AppState" folder in "Browse Swift Code Examples" target */,
 			);
-			path = Common;
+			path = "110 AppState";
+			sourceTree = "<group>";
+		};
+		0084102C2FF14DFE00A6B6DD /* 200 Example */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				0084102D2FF14E1900A6B6DD /* Exceptions for "200 Example" folder in "Browse Swift Code Examples" target */,
+			);
+			path = "200 Example";
+			sourceTree = "<group>";
+		};
+		00C2CCEC2FEFCAC700EECB1C /* 120 Common */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				00C2CCF02FEFCAD900EECB1C /* Exceptions for "120 Common" folder in "Browse Swift Code Examples" target */,
+			);
+			path = "120 Common";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -87,11 +120,13 @@
 				006E08A22FDED59E00756614 /* LICENSE */,
 				006E08A32FDED59E00756614 /* PRIVACY.md */,
 				006E08A42FDED59E00756614 /* README.md */,
-				006E08962FDED58000756614 /* BrowseSwiftCodeExamples */,
-				003EEF952FE1721B00C5E1F9 /* Swift */,
-				003EEF972FE1723A00C5E1F9 /* SwiftUI */,
-				003EEF992FE1724400C5E1F9 /* Combine */,
-				00C2CCEC2FEFCAC700EECB1C /* Common */,
+				006E08962FDED58000756614 /* 100 App */,
+				008410072FF14C9100A6B6DD /* 110 AppState */,
+				00C2CCEC2FEFCAC700EECB1C /* 120 Common */,
+				0084102C2FF14DFE00A6B6DD /* 200 Example */,
+				003EEF952FE1721B00C5E1F9 /* 300 Swift */,
+				003EEF972FE1723A00C5E1F9 /* 310 SwiftUI */,
+				003EEF992FE1724400C5E1F9 /* 400 Combine */,
 				006E08952FDED58000756614 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -120,7 +155,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				006E08962FDED58000756614 /* BrowseSwiftCodeExamples */,
+				006E08962FDED58000756614 /* 100 App */,
 			);
 			name = "Browse Swift Code Examples";
 			packageProductDependencies = (

@@ -27,7 +27,7 @@ struct ExampleListView: View {
             listBody
         }
         .task {
-            updateExampleWindow()
+            updateExampleView()
         }
         .onDisappear {
             terminate()
@@ -50,13 +50,11 @@ struct ExampleListView: View {
 
     private var filteredItems: [Example] {
         let words = searchText.split(separator: " ").map { String($0).lowercased() }
-        guard !words.isEmpty else { return appState.examples }
+        guard !words.isEmpty else { return Example.table }
 
-        return appState.examples.filter { example in
+        return Example.table.filter { example in
             let lowercased = example.title.lowercased()
-            return words.allSatisfy { word in
-                lowercased.contains(word)
-            }
+            return words.allSatisfy { word in lowercased.contains(word) }
         }
     }
 
@@ -66,10 +64,10 @@ struct ExampleListView: View {
         List(filteredItems, selection: $appState.selectedExampleID) { example in
             Text(example.title)
         }
-        .onChange(of: appState.selectedExampleID, updateExampleWindow)
+        .onChange(of: appState.selectedExampleID, updateExampleView)
     }
 
-    func updateExampleWindow() {
+    func updateExampleView() {
         appState.updateSelectedExample()
         if !appState.isExampleWindowOpened {
             openWindow(id: "example")

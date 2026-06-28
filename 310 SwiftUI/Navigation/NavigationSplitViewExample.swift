@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct NavigationSplitViewExample: View {
-    @Environment(Example.self) private var example
 
     // Part
 
@@ -144,8 +143,6 @@ struct NavigationSplitViewExample: View {
                         .font(.title)
                         .padding(.bottom)
                     Text(SampleText.longText)
-                } else {
-                    ExampleHeader(example: example)
                 }
             }
             .padding()

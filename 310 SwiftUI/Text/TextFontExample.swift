@@ -8,24 +8,11 @@
 import SwiftUI
 
 struct TextFontExample: View {
-    @Environment(Example.self) private var example
-
     @ScaledMetric var customFontSize = 16
 
     let sampleText = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit."
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            exampleHeader
-            exampleBody
-        }
-    }
-
-    var exampleHeader: some View {
-        ExampleHeader(example: example)
-    }
-
-    var exampleBody: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
                 fontList

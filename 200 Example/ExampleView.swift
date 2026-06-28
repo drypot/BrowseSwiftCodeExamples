@@ -17,16 +17,11 @@ struct ExampleWindow: Scene {
 
 struct ExampleView: View {
     @Environment(AppState.self) private var appState
-//    @Environment(\.openWindow) private var openWindow
-//    @Environment(\.dismissWindow) private var dismissWindow
-//
-//    @FocusedValue(\.focusedBrowserState) private var state: BrowserState?
 
     var body: some View {
         Group {
             if let example = appState.selectedExample {
                 example.makeView()
-                    .environment(example)
             } else {
                 Text("...")
             }
