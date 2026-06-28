@@ -10,8 +10,6 @@ import SwiftUI
 struct TextFontExample: View {
     @ScaledMetric var customFontSize = 16
 
-    let sampleText = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit."
-
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
@@ -26,47 +24,51 @@ struct TextFontExample: View {
 
     var fontList: some View {
         VStack(alignment: .leading) {
-            Text(sampleText).font(.largeTitle)
+            Text(SampleText.sentence).font(.largeTitle)
             Text(".font(.largeTitle)").padding(.bottom)
 
-            Text(sampleText).font(.title)
+            Text(SampleText.sentence).font(.title)
             Text(".font(.title)").padding(.bottom)
 
-            Text(sampleText).font(.title2)
+            Text(SampleText.sentence).font(.title2)
             Text(".font(.title2)").padding(.bottom)
 
-            Text(sampleText).font(.title3)
+            Text(SampleText.sentence).font(.title3)
             Text(".font(.title3)").padding(.bottom)
 
-            Text(sampleText).font(.headline)
+            Text(SampleText.sentence).font(.headline)
             Text(".font(.headline)").padding(.bottom)
 
-            Text(sampleText).font(.subheadline)
+            Text(SampleText.sentence).font(.subheadline)
             Text(".font(.subheadline)").padding(.bottom)
 
-            Text(sampleText).font(.body)
+            Text(SampleText.sentence).font(.body)
             Text(".font(.body)").padding(.bottom)
 
-            Text(sampleText).font(.callout)
+            Text(SampleText.sentence).font(.callout)
             Text(".font(.callout)").padding(.bottom)
 
-            Text(sampleText).font(.caption)
+            Text(SampleText.sentence).font(.caption)
             Text(".font(.caption)").padding(.bottom)
 
-            Text(sampleText).font(.caption2)
+            Text(SampleText.sentence).font(.caption2)
             Text(".font(.caption2)").padding(.bottom)
 
-            Text(sampleText).font(.footnote)
+            Text(SampleText.sentence).font(.footnote)
             Text(".font(.footnote)").padding(.bottom)
 
-            Text(sampleText).font(.system(.title, design: .default, weight: .medium))
+            Text(SampleText.sentence).font(.system(.title, design: .default, weight: .medium))
             Text(".font(.system(.title, design: .default, weight: .medium))").padding(.bottom)
 
-            Text(sampleText).font(.system(size: customFontSize, weight: .medium, design: .default))
+            Text(SampleText.sentence).font(.system(size: customFontSize, weight: .medium, design: .default))
             Text(".font(.system(size: ..., weight: .medium, design: .default))").padding(.bottom)
 
-            Text(sampleText).font(.custom("Arial", size: customFontSize))
+            Text(SampleText.sentence).font(.custom("Arial", size: customFontSize))
             Text(".custom(\"Arial\", size: ...)").padding(.bottom)
         }
     }
+}
+
+#Preview {
+    TextFontExample()
 }

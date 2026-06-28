@@ -21,4 +21,6 @@ struct SampleText {
         """
 
     static let paragraph = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dolor est, dictum et nibh quis, mattis ornare ligula. Fusce dapibus sollicitudin ligula, vitae finibus magna cursus et. Morbi eu dictum arcu, id ornare turpis. Nunc vehicula imperdiet nisl, et finibus dolor aliquet nec. Praesent auctor lorem mi, quis mattis arcu iaculis eu. Aenean feugiat ac ipsum eget sodales. Aenean ullamcorper varius placerat. Etiam enim nunc, pulvinar tincidunt ornare a, posuere id ipsum. Proin vel nunc quis nulla malesuada fringilla sit amet nec lectus. Duis non posuere ipsum. Donec at ligula id nunc convallis porttitor. Quisque nec libero vitae quam aliquam consequat. Donec sed mauris sed ex feugiat euismod. Nullam consequat gravida mauris ornare blandit."
+
+    static let sentence = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit."
 }

@@ -24,7 +24,7 @@
 				Text/TextFontWeightExample.swift,
 				Text/TextStyleExample.swift,
 				Text/TextStyleNSColorExample.swift,
-				Tree/SwiftUIView.swift,
+				Tree/TreeExample.swift,
 			);
 			target = 006E08932FDED58000756614 /* Browse Swift Code Examples */;
 		};
