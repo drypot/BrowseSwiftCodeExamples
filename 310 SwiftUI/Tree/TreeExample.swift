@@ -68,7 +68,6 @@ fileprivate final class AppState {
             expanded.formUnion(parentIDs)
         }
         selection = [folder7.id]
-        print(expanded)
     }
 
     func parentIDs(of id: FolderState.ID) -> [FolderState.ID]? {
@@ -127,36 +126,55 @@ fileprivate struct FolderTreeView: View {
 
     var body: some View {
         List(selection: $appState.selection) {
-            TreeRow(folder: appState.root, expanded: $appState.expanded)
+            TreeRow(appState.root, children: \.children, expanded: $appState.expanded) { folder in
+                Text(folder.name)
+            }
         }
     }
 }
 
-fileprivate struct TreeRow: View {
-    let folder: FolderState
-    @Binding var expanded: Set<FolderState.ID>
+fileprivate struct TreeRow<Node, RowContent>: View where Node: Identifiable, RowContent: View {
+    let node: Node
+    let children: KeyPath<Node, [Node]?>
+    var expanded: Binding<Set<Node.ID>>
+    let rowContent: (Node) -> RowContent
+
+    init(_ node: Node,
+         children: KeyPath<Node, [Node]?>,
+         expanded: Binding<Set<Node.ID>>,
+         @ViewBuilder rowContent: @escaping (Node) -> RowContent) {
+
+        self.node = node
+        self.children = children
+        self.expanded = expanded
+        self.rowContent = rowContent
+    }
 
     var body: some View {
-        if let children = folder.children {
-            let isExpandedBinding = Binding(
-                get: { expanded.contains(folder.id) },
+        if let childNodes = node[keyPath: children] {
+            let isExpanded = Binding(
+                get: { expanded.wrappedValue.contains(node.id) },
                 set: {
                     if $0 {
-                        expanded.insert(folder.id)
+                        expanded.wrappedValue.insert(node.id)
                     } else {
-                        expanded.remove(folder.id)
+                        expanded.wrappedValue.remove(node.id)
                     }
                 }
             )
-            DisclosureGroup(isExpanded: isExpandedBinding) {
-                ForEach(children) { child in
-                    TreeRow(folder: child, expanded: $expanded)
+            DisclosureGroup(
+                isExpanded: isExpanded,
+                content: {
+                    ForEach(childNodes) { child in
+                        TreeRow(child, children: children, expanded: expanded, rowContent: rowContent)
+                    }
+                },
+                label: {
+                    rowContent(node)
                 }
-            } label: {
-                Text(folder.name)
-            }
+            )
         } else {
-            Text(folder.name)
+            rowContent(node)
         }
     }
 }
