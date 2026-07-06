@@ -112,6 +112,7 @@ struct FormExample: View {
                     Text("Insert Tab").tag(AppState.TabKeyAction.default.rawValue)
                     Text("Indent with Space").tag(AppState.TabKeyAction.indentWithSpace.rawValue)
                 }
+                .pickerStyle(.radioGroup)
 
                 let indentSizeBinding = Binding<Double>(
                     get: { Double(appState.indentSize) },
