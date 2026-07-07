@@ -18,6 +18,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Form/FormExample.swift,
+				Form/OnChangeExample.swift,
 				HelloSwiftUI.swift,
 				Navigation/NavigationSplitViewExample.swift,
 				Text/TextFontExample.swift,
