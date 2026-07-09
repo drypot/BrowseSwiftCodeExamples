@@ -47,6 +47,13 @@
 			);
 			target = 006E08932FDED58000756614 /* Browse Swift Code Examples */;
 		};
+		008C183630005D210007D241 /* Exceptions for "300 Swift" folder in "Browse Swift Code Examples" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				DidSet/DidSetExample.swift,
+			);
+			target = 006E08932FDED58000756614 /* Browse Swift Code Examples */;
+		};
 		00C2CCF02FEFCAD900EECB1C /* Exceptions for "120 Common" folder in "Browse Swift Code Examples" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -59,6 +66,9 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		003EEF952FE1721B00C5E1F9 /* 300 Swift */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				008C183630005D210007D241 /* Exceptions for "300 Swift" folder in "Browse Swift Code Examples" target */,
+			);
 			path = "300 Swift";
 			sourceTree = "<group>";
 		};
