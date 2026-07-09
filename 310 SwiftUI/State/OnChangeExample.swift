@@ -22,7 +22,7 @@ struct OnChangeExample: View {
                 value = 50
             }
         }
-        .onChange(of: value) { _, newValue in
+        .onChange(of: value, initial: true) { _, newValue in
             print("value: \(newValue)")
         }
     }
