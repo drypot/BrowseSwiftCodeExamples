@@ -20,6 +20,7 @@
 				Form/FormExample.swift,
 				Form/OnChangeExample.swift,
 				HelloSwiftUI.swift,
+				ID/IDExample.swift,
 				Navigation/NavigationSplitViewExample.swift,
 				Text/TextFontExample.swift,
 				Text/TextFontWeightExample.swift,

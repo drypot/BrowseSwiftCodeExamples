@@ -69,5 +69,9 @@ final class Example: Identifiable {
                 relativePath: "SwiftUI/Tree/TreeExample.swift",
                 category: .swiftUI,
                 makeView: { AnyView(TreeExample()) } ),
+        Example(title: "SwiftUI, ID",
+                relativePath: "SwiftUI/ID/IDExample.swift",
+                category: .swiftUI,
+                makeView: { AnyView(IDExample()) } ),
     ]
 }
