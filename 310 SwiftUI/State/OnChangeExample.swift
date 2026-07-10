@@ -12,6 +12,8 @@ struct OnChangeExample: View {
 
     var body: some View {
         Form {
+            ContentView()
+            
             Button("Set 30") {
                 value = 30
             }
@@ -23,8 +25,28 @@ struct OnChangeExample: View {
             }
         }
         .onChange(of: value, initial: true) { _, newValue in
-            print("value: \(newValue)")
+            print("on change value: \(newValue)")
         }
+    }
+}
+
+fileprivate struct ContentView: View {
+    var body: some View {
+        TmpView(name: "tmp view1")
+        TmpView(name: "tmp view2")
+    }
+}
+
+fileprivate struct TmpView: View {
+    var name: String
+
+    init(name: String) {
+        self.name = name
+        print("\(name) init:")
+    }
+    var body: some View {
+        let _ = print("\(name) body:")
+        Text(name)
     }
 }
 
