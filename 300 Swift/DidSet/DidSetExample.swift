@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Observation
 
 @Observable
 fileprivate final class AppState {
@@ -42,26 +43,38 @@ struct DidSetExample: View {
     var body: some View {
         Form {
             Button("1") {
-                state.selectedID = 1
+                state.selectedID = random()
                 dump()
             }
             Button("2") {
-                state.selectedIDs = [10]
+                state.selectedIDs = [random()]
                 dump()
             }
             Button("3") {
-                state.selectedIDs = [100, 200, 300]
-                dump()
-            }
-            Button("4") {
-                state.selectedID = nil
+                state.selectedIDs = [random()]
+                state.selectedIDs.insert(random())
+                state.selectedIDs.insert(random())
                 dump()
             }
             Button("5") {
+                state.selectedID = nil
+                dump()
+            }
+            Button("6") {
                 state.selectedIDs = []
                 dump()
             }
         }
+        .onChange(of: state.selectedID) { oldValue, newValue in
+            print("changed: selectedID, \(oldValue?.description ?? "nil"), \(newValue?.description ?? "nil")")
+        }
+        .onChange(of: state.selectedIDs) { oldValue, newValue in
+            print("changed: selectedIDs, \(oldValue), \(newValue)")
+        }
+    }
+
+    func random() -> Int {
+        Int.random(in: 0..<1000)
     }
 
     func dump() {
