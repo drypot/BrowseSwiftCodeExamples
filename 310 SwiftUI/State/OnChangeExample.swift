@@ -9,24 +9,42 @@ import SwiftUI
 
 struct OnChangeExample: View {
     @State private var value: Int = 10
+    @State private var value2: Int = 10
 
     var body: some View {
         Form {
             ContentView()
             
-            Button("Set 30") {
-                value = 30
+            Button("Change Value") {
+                value = Int.random(in: 1...100)
             }
-            Button("Set 40") {
-                value = 40
-            }
-            Button("Set 50") {
-                value = 50
+            Button("Change Value 2") {
+                value2 = Int.random(in: 1...100)
             }
         }
-        .onChange(of: value, initial: true) { _, newValue in
-            print("on change value: \(newValue)")
+        .onAppear {
+            print("on appear:")
+            value = 20
         }
+        .onChange(of: { print("on change 10"); return 10 }() ) {
+        }
+        .onChange(of: value) { oldValue, newValue in
+            print("on change 20: old = \(oldValue), new = \(newValue), value = \(value)")
+        }
+        .modifier(MyModifier(value2: value2))
+    }
+}
+
+fileprivate struct MyModifier: ViewModifier {
+    var value2: Int
+
+    func body(content: Content) -> some View {
+        content
+            .onChange(of: { print("on change 30"); return 10 }() ) {
+            }
+            .onChange(of: value2) { oldValue, newValue in
+                print("on change 40: old = \(oldValue), new = \(newValue), value2 = \(value2)")
+            }
     }
 }
 
@@ -44,6 +62,7 @@ fileprivate struct TmpView: View {
         self.name = name
         print("\(name) init:")
     }
+
     var body: some View {
         let _ = print("\(name) body:")
         Text(name)
