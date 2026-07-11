@@ -7,43 +7,47 @@
 
 import SwiftUI
 
+@Observable
+fileprivate final class AppState {
+    var value: Int = 0
+    var value2: Int = 0
+}
+
 struct OnChangeExample: View {
-    @State private var value: Int = 10
-    @State private var value2: Int = 10
+    @State private var state = AppState()
 
     var body: some View {
         Form {
             ContentView()
-            
             Button("Change Value") {
-                value = Int.random(in: 1...100)
+                state.value = Int.random(in: 1...100)
             }
             Button("Change Value 2") {
-                value2 = Int.random(in: 1...100)
+                state.value2 = Int.random(in: 1...100)
             }
         }
         .onAppear {
             print("on appear:")
-            value = 20
+            state.value = 20
         }
         .onChange(of: { print("on change 10"); return 10 }() ) {
         }
-        .onChange(of: value) { oldValue, newValue in
-            print("on change 20: old = \(oldValue), new = \(newValue), value = \(value)")
+        .onChange(of: state.value) { oldValue, newValue in
+            print("on change 20: old = \(oldValue), new = \(newValue), value = \(state.value)")
         }
-        .modifier(MyModifier(value2: value2))
+        .modifier(MyModifier(state: state))
     }
 }
 
 fileprivate struct MyModifier: ViewModifier {
-    var value2: Int
+    var state: AppState
 
     func body(content: Content) -> some View {
         content
             .onChange(of: { print("on change 30"); return 10 }() ) {
             }
-            .onChange(of: value2) { oldValue, newValue in
-                print("on change 40: old = \(oldValue), new = \(newValue), value2 = \(value2)")
+            .onChange(of: state.value2) { oldValue, newValue in
+                print("on change 40: old = \(oldValue), new = \(newValue), value2 = \(state.value2)")
             }
     }
 }
